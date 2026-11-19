@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 @export var speed = 14
 @export var fall_acceleration = 75 # gravity
+@export var jump_impulse = 20
+
 
 var target_velocity = Vector3.ZERO
 
@@ -25,8 +27,10 @@ func  _physics_process(delta: float) -> void:
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
 	
-	if not is_on_floor():
-		target_velocity.y += target_velocity.y - (fall_acceleration * delta)
+	if is_on_floor() and Input.is_action_just_pressed("jump"): # jump
+		target_velocity.y = jump_impulse
+	if not is_on_floor(): # gravity
+		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
 	
 	velocity = target_velocity
 	move_and_slide()
