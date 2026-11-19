@@ -1,0 +1,14 @@
+extends Node
+
+@export var mob_scene: PackedScene
+
+func _on_mob_timer_timeout() -> void:
+	var mob = mob_scene.instantiate() # instatntiates new mob instance
+	
+	var mob_spawn_location = get_node("SpawnPath/SpawnLocation") # stores reference to SpawnLocation node
+	mob_spawn_location.progress_ratio = randf() # gives it a random offset
+	
+	var player_position = $Player.position # stores the position of the player node
+	mob.initialise(mob_spawn_location.position, player_position) # runs the function in mob script giving it required parameters
+	
+	add_child(mob) # adds child to Main node / spawns
