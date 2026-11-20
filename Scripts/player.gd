@@ -25,6 +25,10 @@ func  _physics_process(delta: float) -> void:
 		direction = direction.normalized()
 		# Setting the basis property will affect the rotation of the node.
 		$Pivot.basis = Basis.looking_at(direction)
+		
+		$AnimationPlayer.speed_scale = 4 # speeds up animation of player while moving
+	else:
+		$AnimationPlayer.speed_scale = 1 # resets animation speed if not moving
 	
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
@@ -49,6 +53,8 @@ func  _physics_process(delta: float) -> void:
 			if Vector3.UP.dot(collision.get_normal()) > 0.1:
 				mob.squash() # run the squash function in mob script
 				break
+	
+	$Pivot.rotation.x = PI / 6 * velocity.y / jump_impulse # makes the character follow an arc while jumping
 
 func die():
 	hit.emit()
