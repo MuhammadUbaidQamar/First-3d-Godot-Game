@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+signal hit
+
 @export var speed = 14
 @export var fall_acceleration = 75 # gravity
 @export var jump_impulse = 20
@@ -47,3 +49,10 @@ func  _physics_process(delta: float) -> void:
 			if Vector3.UP.dot(collision.get_normal()) > 0.1:
 				mob.squash() # run the squash function in mob script
 				break
+
+func die():
+	hit.emit()
+	queue_free()
+	
+func _on_mob_detector_body_entered(_body: Node3D) -> void:
+	die()

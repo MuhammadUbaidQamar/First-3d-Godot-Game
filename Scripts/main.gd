@@ -12,3 +12,6 @@ func _on_mob_timer_timeout() -> void:
 	mob.initialise(mob_spawn_location.position, player_position) # runs the function in mob script giving it required parameters
 	
 	add_child(mob) # adds child to Main node / spawns
+
+func _on_player_hit() -> void:
+	$MobTimer.stop()
