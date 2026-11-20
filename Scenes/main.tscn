@@ -90,9 +90,11 @@ autostart = true
 
 [node name="UserInterface" type="Control" parent="." unique_id=1149127775]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme = SubResource("Theme_pf7yb")
 
 [node name="ScoreLabel" type="Label" parent="UserInterface" unique_id=1265167172]
@@ -104,6 +106,38 @@ offset_bottom = 36.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Score: 0"
 script = ExtResource("5_21xkr")
+
+[node name="Retry" type="ColorRect" parent="UserInterface" unique_id=1447592182]
+modulate = Color(0.32941177, 0.32941177, 0.32941177, 0.58431375)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.39215687)
+
+[node name="Label" type="Label" parent="UserInterface/Retry" unique_id=850704887]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -119.0
+offset_top = -14.0
+offset_right = 119.0
+offset_bottom = 14.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You Died!
+
+To Replay
+Press Enter(on keyboard)
+Press START(on controller)"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

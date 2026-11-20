@@ -29,7 +29,7 @@ func  _physics_process(delta: float) -> void:
 	target_velocity.x = direction.x * speed
 	target_velocity.z = direction.z * speed
 	
-	if is_on_floor() and Input.is_action_just_pressed("jump"): # jump
+	if is_on_floor() and Input.is_action_pressed("jump"): # jump
 		target_velocity.y = jump_impulse
 	if not is_on_floor(): # gravity
 		target_velocity.y = target_velocity.y - (fall_acceleration * delta)
